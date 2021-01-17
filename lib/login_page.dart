@@ -159,33 +159,33 @@ void iniState() {
       );
 
       final loginButton = Container(
-      height: 55.0,
-      child: Material(
-        borderRadius: BorderRadius.circular(32.0),
-        shadowColor: Colors.blue.shade400,
-        color: Colors.blue.shade400,
-        elevation: 7.0,
-        child: RaisedButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-          ),
-          onPressed: () {
-            check();
-          },
-          padding: EdgeInsets.all(12),
+        height: 55.0,
+        child: Material(
+          borderRadius: BorderRadius.circular(32.0),
+          shadowColor: Colors.blue.shade400,
           color: Colors.blue.shade400,
-          child: Center(
-            child: Text(
-              'Login',
-              style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat'),
+          elevation: 7.0,
+          child: RaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            onPressed: () {
+              check();
+            },
+            padding: EdgeInsets.all(12),
+            color: Colors.blue.shade400,
+            child: Center(
+              child: Text(
+                'Login',
+                style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat'),
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
 
       final forgotLabel = FlatButton(
         child: Text(

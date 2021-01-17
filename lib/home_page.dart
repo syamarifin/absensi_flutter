@@ -71,24 +71,24 @@ class _HomePageState extends State<HomePage>{
       floatingActionButton: FloatingActionButton(
         child: const Icon(
           Icons.qr_code_scanner), 
-          // onPressed: () {
-          //   Navigator.of(context).pushNamed(Absen.tag);
-          // },
-          onPressed: () async {
-            try {
-              String barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666", "Cancel", true, ScanMode.QR);
-              // String barcode = await BarcodeScanner.scan();
-              setState (() async {
-                this.Barcode = barcode;
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                prefs.setString('NIS', barcode);
-                Navigator.of(context).pushNamed(Absen.tag);
-                // cekSiswa();
-              });
-            } on PlatformException {
-              this.Barcode = 'Izin kamera tidak diizinkan oleh si pengguna';
-            }
+          onPressed: () {
+            Navigator.of(context).pushNamed(Absen.tag);
           },
+          // onPressed: () async {
+          //   try {
+          //     String barcode = await FlutterBarcodeScanner.scanBarcode("#ff6666", "Cancel", true, ScanMode.QR);
+          //     // String barcode = await BarcodeScanner.scan();
+          //     setState (() async {
+          //       this.Barcode = barcode;
+          //       SharedPreferences prefs = await SharedPreferences.getInstance();
+          //       prefs.setString('NIS', barcode);
+          //       Navigator.of(context).pushNamed(Absen.tag);
+          //       // cekSiswa();
+          //     });
+          //   } on PlatformException {
+          //     this.Barcode = 'Izin kamera tidak diizinkan oleh si pengguna';
+          //   }
+          // },
         ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
