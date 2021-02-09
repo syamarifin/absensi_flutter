@@ -25,8 +25,8 @@ class _AbsenState extends State<Absen> {
 
   Future<String> getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String nis = prefs.getString('NIS');
-    String nis = '16201211';
+    String nis = prefs.getString('NIS');
+    // String nis = '16201211';
     final response = await http.post(BaseUrl.absenScan, body: {"NIS": nis});
     setState(() {
       //RESPONSE YANG DIDAPATKAN DARI API TERSEBUT DI DECODE
