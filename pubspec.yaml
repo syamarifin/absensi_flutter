@@ -33,10 +33,17 @@ dependencies:
   # A Flutter plugin for scanning 2D barcodes and QRCodes via camera.
   barcode_scan: ^2.0.1
   flutter_barcode_scanner: ^1.0.1
+  fluttertoast: ^3.1.0
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.7.2"
+
+flutter_icons:
+  android: "launcher_icon" 
+  ios: true
+  image_path: "assets/mutu.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

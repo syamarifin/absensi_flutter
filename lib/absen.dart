@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/services.dart';
 import 'package:absensi_siswa/baseurl.dart';
@@ -9,18 +10,18 @@ import 'package:absensi_siswa/absen.dart';
 import 'package:absensi_siswa/flutter_barcode_scanner.dart';
 import 'home_page.dart';
 
-class Absen extends StatefulWidget{
+class Absen extends StatefulWidget {
   static String tag = 'absen';
-  
+
   _AbsenState createState() => new _AbsenState();
 }
 
-class _AbsenState extends State<Absen>{
-  String Barcode="";
-  String NIS="";
-  String NamaSiswa="";
-  String Kelas="";
-  String Jurusan="";
+class _AbsenState extends State<Absen> {
+  String Barcode = "";
+  String NIS = "";
+  String NamaSiswa = "";
+  String Kelas = "";
+  String Jurusan = "";
 
   Future<String> getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -42,7 +43,7 @@ class _AbsenState extends State<Absen>{
     super.initState();
     this.getData(); //PANGGIL FUNGSI YANG TELAH DIBUAT SEBELUMNYA
   }
-  
+
   check() {
     cekSiswa();
   }
@@ -57,28 +58,51 @@ class _AbsenState extends State<Absen>{
     NIS = data['NIS'];
   }
 
-  absenMasuk() async{
+  absenMasuk() async {
     //proses absen masuk siswa
     final response = await http.post(BaseUrl.absenMasuk, body: {"NIS": NIS});
     final data = jsonDecode(response.body);
     NamaSiswa = data['Nama'];
-    setState((){
+    absenDatang();
+    setState(() {
       // Navigator.of(context).pushNamed(HomePage.tag);
       Navigator.pop(context);
     });
   }
 
-  absenKeluar() async{
+  absenKeluar() async {
     //proses absen pulang siswa
     final response = await http.post(BaseUrl.absenKeluar, body: {"NIS": NIS});
     final data = jsonDecode(response.body);
     NamaSiswa = data['Nama'];
-    setState((){
+    absenPulang();
+    setState(() {
       // Navigator.of(context).pushNamed(HomePage.tag);
       Navigator.pop(context);
     });
   }
-  Widget build(BuildContext context){
+
+  void absenPulang() {
+    Fluttertoast.showToast(
+        msg: 'Absen Pulang Berhasil',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white);
+  }
+
+  void absenDatang() {
+    Fluttertoast.showToast(
+        msg: 'Absen Masuk Berhasil',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white);
+  }
+
+  Widget build(BuildContext context) {
     final masukButton = Container(
       height: 55.0,
       child: Material(
@@ -99,9 +123,9 @@ class _AbsenState extends State<Absen>{
             child: Text(
               'Masuk',
               style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat'),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat'),
             ),
           ),
         ),
@@ -127,9 +151,9 @@ class _AbsenState extends State<Absen>{
             child: Text(
               'Keluar',
               style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat'),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat'),
             ),
           ),
         ),
@@ -141,7 +165,7 @@ class _AbsenState extends State<Absen>{
         appBar: AppBar(
           title: Text('Detail Siswa'),
         ),
-        body: Center (
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

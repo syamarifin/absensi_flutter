@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
     LoginPage.tag: (context) => LoginPage(),
     HomePage.tag: (context) => HomePage(),
     Absen.tag: (context) => Absen(),
-    ShowSiswaList.tag:(context) => ShowSiswaList(),
-    MyHistoryAbsen.tag:(context) => MyHistoryAbsen(),
+    ShowSiswaList.tag: (context) => ShowSiswaList(),
+    MyHistoryAbsen.tag: (context) => MyHistoryAbsen(),
   };
 
-  @override 
-  Widget build(BuildContext context){
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title:'Absensi Siswa',
+      title: 'Absensi Siswa',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
       routes: routes,
     );
   }
-  
 }
 
 class MyHomePage extends StatefulWidget {
@@ -44,31 +43,31 @@ class _MyHomePageState extends State<MyHomePage> {
     String stringValue = prefs.getString('username');
     print(stringValue);
     //cek user sudah login apa belum
-    if (stringValue != null){
+    if (stringValue != null) {
       //tampilkan halaman home jika user sudah login
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute (builder: (_) {
+        MaterialPageRoute(builder: (_) {
           return HomePage();
         }),
       );
-    }else{
+    } else {
       //tampilkan halaman login jika user belum login
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute (builder: (_) {
+        MaterialPageRoute(builder: (_) {
           return LoginPage();
         }),
       );
     }
   }
+
   @override
   void initState() {
     super.initState();
     cekLogin();
   }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-    );
+    return Container();
   }
 }
